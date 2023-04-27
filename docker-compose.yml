@@ -1,20 +1,20 @@
 version: "3.8"
 
 services:  
-  db:
-    image: mysql:latest
-    container_name: database-mysql
-    ports:
-      - 3307:3306
-    environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: true
-      # MYSQL_ROOT_PASSWORD: 'secret-password'
-    volumes:
-      - database_mysql:/var/lib/mysql
-      - ./sql:/docker-entrypoint-initdb.d/
-    healthcheck:
-      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
-      retries: 10
+  # db:
+  #   image: mysql:latest
+  #   container_name: database-mysql
+  #   ports:
+  #     - 3307:3306
+  #   environment:
+  #     MYSQL_ALLOW_EMPTY_PASSWORD: true
+  #     # MYSQL_ROOT_PASSWORD: 'secret-password'
+  #   volumes:
+  #     - database_mysql:/var/lib/mysql
+  #     - ./sql:/docker-entrypoint-initdb.d/
+  #   healthcheck:
+  #     test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+  #     retries: 10
   compute-service-go:
     container_name: compute-service-go
     build: .
@@ -23,12 +23,12 @@ services:
     environment:
       - DB_USERNAME=root
       - DB_PASSWORD=
-      - DB_NAME=section21_prioritas_1
-      - DB_HOST=db
+      - DB_NAME=compute-service-alterra
+      - DB_HOST=34.68.238.90
       - DB_PORT=3306
     restart: on-failure
-    depends_on:
-      db:
-        condition: service_healthy
-volumes:
-  database_mysql:
+    # depends_on:
+    #   db:
+    #     condition: service_healthy
+# volumes:
+#   database_mysql:
