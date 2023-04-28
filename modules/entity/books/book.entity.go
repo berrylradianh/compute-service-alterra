@@ -4,10 +4,6 @@ import (
 	"gorm.io/gorm"
 )
 
-// func InitMigrate() {
-// 	db.DB.AutoMigrate(Book{})
-// }
-
 type Book struct {
 	*gorm.Model
 

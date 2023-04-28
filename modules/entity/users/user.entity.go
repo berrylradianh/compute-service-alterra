@@ -5,10 +5,6 @@ import (
 	"gorm.io/gorm"
 )
 
-// func InitMigrate() {
-// 	db.DB.AutoMigrate(User{})
-// }
-
 type User struct {
 	*gorm.Model
 
