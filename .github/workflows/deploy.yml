@@ -12,10 +12,10 @@ jobs:
     - name: pull-test-deploy
       uses: appleboy/ssh-action@master
       with:
-        host: ${{secrets.DB_HOST}}
-        username: ${{secrets.USERNAME}}
-        key: ${{secrets.KEY}}
-        port: ${{secrets.PORT}}
+        host: 34.173.157.160  
+        username: Berryl Radian
+        key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCknK576S+4hJg8jN+ngxypKH25XxswADRbFNroTSGnxeMWJ7Sf6XDyKwOyb9e/jgFxAEsaIa1JEq+Oj6Akd7ZcRhSLGPlD+isUsAuaSKzxSCcP84Rd4Hx20K69TJNXMVipZk6/LASc+Owf6CN+ROTKQiqZ0RDaNSHHGeTtNzpQ8JnEUFrlxRAeH+ujY5TaNnN9ZZM3RmBU+kKYu/YOoxIWtTV6Bxe0d+t85TlT/sbh+oH51YZFUeMokzZVfWRE1wEpNiPD7bNiTIvAk60YP29kkbT/SGdbqpsPleGQ/FShqhd8F1b8gqMCWhqMTpjqfYk/pOFC/ntrN0NTzVyun1IkbdUVS8dvxKRT+vo40qG1c6LzhmLl/iW+nh5Z7c9PB5Vek8+1lJNksCFPUq9MoeAWzMw5tMHM8ift/IL7Sa852u7S1Zarsnu9w1RHGBlMis+yVstIdTi2eIWnXRAwTulU2AyFMdAmnSsMgpzX0YhCDZlEkvULUBz4Rc+zwqXS6FsbkP2KiXOztRKVd55b3blu9QVXTQYencaoaFseq34lJXJFP0xrZbu7WEZvjJqkngOhkr1twqanKjHKg4pEIRweatYGlmUtk7LwS+/rV/S7+R8Dmzs8fwaMyN0z8nzrkR8SIIsqI/SbFBbrs64kFYezcvthbBopLynrauM216GvhQ== computeservice
+        port: 22
         script: |
           cd app
           git pull origin master
