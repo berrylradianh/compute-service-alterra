@@ -14,7 +14,7 @@ jobs:
       with:
         host: ${{secrets.DB_HOST}}
         username: ${{secrets.USERNAME}}
-        key: ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBC6MDgflgU9szZ0yeSLp7j8jAUBLmXgF3ywDkG3HoJ4ys8wJlKhEM17ruOoA7i1B//0aqMOBCsQPHHIloEkSfuU= google-ssh {"userName":"berrylhamesha02@gmail.com","expireOn":"2023-04-30T20:35:53+0000"}
+        key: ${{secrets.KEY}}
         port: ${{secrets.PORT}}
         script: |
           cd app
