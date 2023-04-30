@@ -12,7 +12,7 @@ jobs:
     - name: pull-test-deploy
       uses: appleboy/ssh-action@master
       with:
-        host: 34.28.156.191
+        host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
         port: 22
