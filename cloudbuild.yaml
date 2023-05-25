@@ -1,12 +1,12 @@
 steps:
 - id: Build-docker
   name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'us.gcr.io/$PROJECT_ID/production/compute-service-alterra:$SHORT_SHA', '.']
+  args: ['build', '-t', 'us.gcr.io/$PROJECT_ID/production/compute-service:$SHORT_SHA', '.']
   timeout: 900s
 
 - id: Push-docker
   name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'us.gcr.io/$PROJECT_ID/production/compute-service-alterra:$SHORT_SHA']
+  args: ['push', 'us.gcr.io/$PROJECT_ID/production/compute-service:$SHORT_SHA']
   timeout: 900s
 
 - id: envSubst-for-deployment.yml
@@ -21,7 +21,7 @@ steps:
   args:
   - run
   - --filename=deployment.yaml
-  - --cluster=compute-service-alterra
+  - --cluster=	compute-service-alterra
   - --location=us-central1-a
   timeout: 900s
 

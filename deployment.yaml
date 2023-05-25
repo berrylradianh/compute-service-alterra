@@ -7,13 +7,13 @@ metadata:
 apiVersion: v1
 kind: Service
 metadata:
-  name: compute-service-alterra
+  name: compute-service
   namespace: production
   labels:
-    app: compute-service-alterra
+    app: compute-service
 spec:
   selector:
-    app: compute-service-alterra
+    app: compute-service
   ports:
   - port: 8080
     name: http
@@ -24,26 +24,26 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: compute-service-alterra
+  name: compute-service
   namespace: production
 spec:
   selector:
     matchLabels:
-      app: compute-service-alterra
+      app: compute-service
   strategy:
     type: RollingUpdate
   template:
     metadata:
       labels:
-        app: compute-service-alterra
+        app: compute-service
     spec:
       containers:
-      - name: compute-service-alterra
-        image:  us.gcr.io/$PROJECT_ID/production/compute-service-alterra:$SHORT_SHA
+      - name: compute-service
+        image:  us.gcr.io/$PROJECT_ID/production/compute-service:$SHORT_SHA
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
-          name: compute-service-alterra
+          name: compute-service
         resources:
           requests:
             cpu: 50m
@@ -52,7 +52,7 @@ spec:
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: compute-service-alterra
+  name: compute-service
   namespace: production
 spec:
   maxReplicas: 10
@@ -60,19 +60,19 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: compute-service-alterra
+    name: compute-service
   targetCPUUtilizationPercentage: 100
 
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: compute-service-alterra
+  name: compute-service
   namespace: production
   annotations:
-    kubernetes.io/ingress.global-static-ip-name: compute-service-alterra
+    kubernetes.io/ingress.global-static-ip-name: compute-service
     kubernetes.io/ingress.allow-http: "false"
-    networking.gke.io/managed-certificates: compute-service-alterra
+    networking.gke.io/managed-certificates: compute-service
 spec:
   rules:
     - host: 34.149.64.119
@@ -82,7 +82,7 @@ spec:
           pathType: ImplementationSpecific
           backend:
             service:
-              name: compute-service-alterra
+              name: compute-service
               port: 
                 number: 8080
 
@@ -90,7 +90,7 @@ spec:
 apiVersion: networking.gke.io/v1beta2
 kind: ManagedCertificate
 metadata:
-  name: compute-service-alterra
+  name: compute-service
   namespace: production
 spec:
   domains:
