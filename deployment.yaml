@@ -75,7 +75,7 @@ metadata:
     networking.gke.io/managed-certificates: compute-service
 spec:
   rules:
-    - host: 34.149.64.119
+    - host: app.compute-service.com
       http:
         paths:
         - path: /*
@@ -94,4 +94,4 @@ metadata:
   namespace: production
 spec:
   domains:
-    - 34.149.64.119
+    - app.compute-service.com
