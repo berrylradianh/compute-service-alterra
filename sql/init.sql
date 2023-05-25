@@ -1,0 +1,1 @@
+CREATE DATABASE compute_service_alterra;

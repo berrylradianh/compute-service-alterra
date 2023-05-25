@@ -1,0 +1,96 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: production
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: compute-service-alterra
+  namespace: production
+  labels:
+    app: compute-service-alterra
+spec:
+  selector:
+    app: compute-service-alterra
+  ports:
+  - port: 8080
+    name: http
+    targetPort: 8080
+  type: NodePort
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: compute-service-alterra
+  namespace: production
+spec:
+  selector:
+    matchLabels:
+      app: compute-service-alterra
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+       app: compute-service-alterra
+    spec:
+      containers:
+      - name: compute-service-alterra
+        image: us.gcr.io/$PROJECT_ID/production/compute-service-alterra:$SHORT_SHA
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+          name: compute-service-alterra
+        resources:
+          requests:
+            cpu: 50m
+
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: compute-service-alterra
+  namespace: production
+spec:
+  maxReplicas: 10
+  minReplicas: 3
+  scaleTargetRef:
+    apiVersion: app/v1
+    kind: Deployment
+    name: compute-service-alterra
+  targetCPUUtilizationPercentage: 100
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: compute-service-alterra
+  namespace: production
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: compute-service-alterra
+    kubernetes.io/ingress.allow-http: "false"
+    networking.gke.io/managed-certificates: compute-service-alterra
+spec:
+  rules:
+    - host: 34.149.64.119
+      http:
+        paths: /*
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: compute-service-alterra
+            port:
+              number:8080
+
+---
+apiVersion: networking/v1beta2
+kind: ManagedCertificate
+metadata:
+  name: compute-service-alterra
+  namespace: production
+spec:
+  domains:
+    - 34.149.64.119
