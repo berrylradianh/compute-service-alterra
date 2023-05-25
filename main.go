@@ -14,7 +14,7 @@ import (
 // }
 
 func main() {
-	log.Println("Starting the application...")
+	log.Println("Starting application...")
 	e := r.InitRoutes()
 	m.LogMiddleware(e)
 
