@@ -11,7 +11,7 @@ steps:
 
 - id: Cloud-run
   name: 'gcr.io/cloud-builders/gcloud'
-  args: ['beta','run','deploy','compute-service', '--image','gcr.io/$PROJECT_ID/compute-service','--region','us-central1','--platform','managed','--allow-unauthenticated']
+  args: ['beta','run','deploy','compute-service', '--image','gcr.io/$PROJECT_ID/compute-service:$SHORT_SHA','--region','us-central1','--platform','managed','--allow-unauthenticated']
   timeout: 900s
 images:
 - gcr.io/$PROJECT_ID/compute-service:$SHORT_SHA

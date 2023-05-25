@@ -3,7 +3,6 @@ package databases
 import (
 	"fmt"
 	"log"
-	"os"
 
 	ebl "github.com/berrylradianh/go_berryl-radian-hamesha/modules/entity/blogs"
 	eb "github.com/berrylradianh/go_berryl-radian-hamesha/modules/entity/books"
@@ -27,11 +26,11 @@ func InitDB() {
 		log.Fatal("Error loading .env file")
 	}
 
-	username := os.Getenv("DB_USERNAME")
-	password := os.Getenv("DB_PASSWORD")
-	host := os.Getenv("DB_HOST")
+	username := "root"
+	password := "secret-password"
+	host := "34.30.158.49"
 	port := "3306"
-	name := os.Getenv("DB_NAME")
+	name := "compute_service_alterra"
 
 	connectionString := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=True&loc=Local",
 		username,
