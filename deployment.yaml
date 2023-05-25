@@ -70,7 +70,7 @@ metadata:
   name: compute-service
   namespace: production
   annotations:
-    kubernetes.io/ingress.global-static-ip-name: compute-service
+    kubernetes.io/ingress.global-static-ip-name: compute-service-alterra
     kubernetes.io/ingress.allow-http: "false"
     networking.gke.io/managed-certificates: compute-service
 spec:
