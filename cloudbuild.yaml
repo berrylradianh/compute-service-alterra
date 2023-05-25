@@ -21,7 +21,7 @@ steps:
   args:
   - run
   - --filename=deployment.yaml
-  - --cluster=	compute-service-alterra
+  - --cluster=compute-service-alterra
   - --location=us-central1-a
   timeout: 900s
 
