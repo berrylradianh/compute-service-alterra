@@ -24,4 +24,4 @@ steps:
               '--allow-unauthenticated']
   timeout: 900s
 images:
-- gcr.io/$PROJECT_ID/compute-service
+- gcr.io/$PROJECT_ID/compute-service:$SHORT_SHA
